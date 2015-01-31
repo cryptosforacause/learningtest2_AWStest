@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  crypto: 1
+  fiat: 1
+  crypto_quantity: 1.5
+  fiat_quantity: 1.5
+  email: MyString
+  user_id: 
+
+two:
+  address: MyString
+  crypto: 1
+  fiat: 1
+  crypto_quantity: 1.5
+  fiat_quantity: 1.5
+  email: MyString
+  user_id: 

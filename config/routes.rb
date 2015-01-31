@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  root 'transactions#show'
+  get '/' => 'transactions#show'
+
+  post 'transactions' => 'transactions#create'
+  get 'show' => 'transactions#show'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

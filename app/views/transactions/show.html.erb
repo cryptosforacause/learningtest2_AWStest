@@ -1,0 +1,16 @@
+<h1>Enter details here!</h1>
+
+<%= form_for(@transaction) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :crypto_quantity %>
+      <%= f.number_field :crypto_quantity, step: 0.0001 %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+
+      <%= f.submit "Buy Doge!", class: "btn btn-primary" %>
+<% end %>
