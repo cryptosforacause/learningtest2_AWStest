@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post 'transactions' => 'transactions#create'
   get 'show' => 'transactions#show'
+
+  get 'dogedtest' => 'transactions#dogedtester'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

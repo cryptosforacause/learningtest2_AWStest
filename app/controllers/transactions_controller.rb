@@ -28,6 +28,24 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def dogedtester
+    # create a new instance of the client
+    client = DogecoinClient.new
+
+    # check that dogecoind is running and that our credentials are correct
+    if client.valid?
+      # get a new wallet address
+      new_wallet_addr = client.get_new_address
+
+      # get the balance of our new wallet
+      my_balance = client.get_balance(new_wallet_addr)
+      @displayvar= "I have #{my_balance} doge!"
+    else
+      @displayvar= 'Something is wrong...'
+    end
+  end
+
+
     private
       def user_params
         params.require(:transaction).permit(:email)
