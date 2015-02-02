@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,6 +33,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Try using dogecoin client gem to communicate
 gem 'dogecoin_client'
 
+#Rubber
+gem 'rubber'
+gem 'mysql'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -56,3 +60,4 @@ group :production do
 end
 
 
+gem 'open4'
