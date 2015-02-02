@@ -100,32 +100,3 @@ if Rubber::Util.has_asset_pipeline?
   before "deploy:assets:precompile", "deploy:assets:symlink"
   after "rubber:config", "deploy:assets:precompile"
 end
-
-namespace :deploy do
-  # Push contents of config/secrets folder to the server
-  after "deploy:update_code", "deploy:app_secrets"
-  desc "Push contents of config/secrets folder to the remote server"
-  task :app_secrets do
-    rubber_instances.for_role('app').each do |instance|
-      system "rsync -rz -e 'ssh -i #{rubber_env.cloud_providers.aws.key_file}' config/secrets root@#{instance.full_name}:#{release_path}/config"
-    end
-  end
-end
-
-namespace :deploy do
-  desc "precompile and deploy the assets to the server"
-  after "deploy:update_code", "deploy:precompile_assets"
-  task :precompile_assets, :roles => :app do
-    run_locally "#{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile"
-    transfer(:up, "public/assets", "#{release_path}/public/assets") { print "." }
-    run_locally "rm -rf public/assets"    # clean up to avoid conflicts with development-mode assets
-  end
-end
-
-# Based on http://github.com/guides/deploying-with-capistrano
-default_run_options[:pty] = true
-set :scm, :git
-set :repository, "git@github.com:cryptosforacause/learningtest2_AWStest.git"
-set :branch, "rubberadd"
-ssh_options[:forward_agent] = true  # Magic! lets the server use our local github key to pull the deploy
-set :deploy_via, :remote_cache
