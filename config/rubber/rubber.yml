@@ -28,7 +28,7 @@ domain: foo.com
 # OPTIONAL: Additional rubber file to pull config from if it exists.  This file will
 # also be pushed to remote host at Rubber.root/config/rubber/rubber-secret.yml
 #
-rubber_secret: “#{File.join(RUBBER_ROOT, ‘config’, ‘secrets’, ‘rubber-secret.yml’)}”
+rubber_secret: "#{File.join(RUBBER_ROOT, 'config', 'secrets', 'rubber-secret.yml')}"
 
 # OPTIONAL: Encryption key that was used to obfuscate the contents of rubber-secret.yml with "rubber util:obfuscation" 
 # Not that much better when stored in here, but you could use a ruby snippet in here to fetch it from a key server or something
@@ -86,8 +86,8 @@ cloud_providers:
     # Ubuntu 14.04.1 Trusty instance-store 64-bit: ami-92f569fa
     #
     # m1.small or m1.large or m1.xlarge
-    image_type: c1.medium
-    image_id: ami-92f569fa
+    image_type: t2.micro
+    image_id: ami-ca381398
 
     # OPTIONAL: Provide fog-specific options directly.  This should only be used if you need a special setting that
     # Rubber does not directly expose.  Since these settings will be passed directly through to fog, we can't make any
@@ -329,11 +329,12 @@ staging_roles: "#{known_roles.reject {|r| r =~ /slave/ || r =~ /^db$/ }.join(','
 #
 
 hosts:
-    cms1:
-        instance_roles:“web,app,web_tools,db:primary=true”
-        availability_zone: ap-southeast-1a
-        volumes:
-            size: 14
+  cms1:
+    instance_roles: "web,app,web_tools,db:primary=true"
+    availability_zone: ap-southeast-1a
+    use_static_ip: true     # If you want this instance to have a static IP
+    volumes:                # (Optional: define one or more EBS volumes)
+      - size: 15           # size of vol in GBs
 
 # hosts:
 #   my_host:
