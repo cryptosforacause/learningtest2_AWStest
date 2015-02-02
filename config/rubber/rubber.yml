@@ -333,8 +333,8 @@ hosts:
     instance_roles: "web,app,web_tools,db:primary=true"
     availability_zone: ap-southeast-1a
     use_static_ip: true     # If you want this instance to have a static IP
-    volumes:                # (Optional: define one or more EBS volumes)
-      - size: 15           # size of vol in GBs
+    # volumes:                # (Optional: define one or more EBS volumes)
+    #   - size: 15           # size of vol in GBs
 
 # hosts:
 #   my_host:
